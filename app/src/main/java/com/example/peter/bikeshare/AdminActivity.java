@@ -17,4 +17,9 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddBike.class);
         startActivity(intent);
     }
+
+    public void goToAddUser(View view) {
+        Intent intent = new Intent(this, AddUser.class);
+        startActivity(intent);
+    }
 }
