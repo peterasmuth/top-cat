@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToAddBike"
-            android:text="Add a Bike" />
+            android:text="Add a Borke" />
 
         <Button
             android:id="@+id/button4"
