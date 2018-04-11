@@ -18,6 +18,9 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE first_name LIKE :first AND " + "last_name LIKE :last LIMIT 1")
     User findByName(String first, String last);
 
+    @Query("SELECT * FROM users WHERE user_id = 1")
+    User findFirst();
+
     @Insert
     void insertAll(User... users);
 

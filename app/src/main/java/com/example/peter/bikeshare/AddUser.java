@@ -6,6 +6,8 @@ import android.widget.EditText;
 
 public class AddUser extends AppCompatActivity {
 
+    static int userCount = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,8 @@ public class AddUser extends AppCompatActivity {
 
         User newUser = new User();
 
+        newUser.setUser_id(userCount);
+        userCount++;
         newUser.setEmail(email);
         newUser.setMI(middleName);
         newUser.setFirstName(firstName);
