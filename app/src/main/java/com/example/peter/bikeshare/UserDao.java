@@ -21,6 +21,12 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE user_id = 1")
     User findFirst();
 
+    @Query("DELETE FROM users")
+    void deleteAll();
+
+    @Query("SELECT COUNT(*) FROM users")
+    int userCount();
+
     @Insert
     void insertAll(User... users);
 

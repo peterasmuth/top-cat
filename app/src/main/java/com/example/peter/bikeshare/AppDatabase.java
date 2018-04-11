@@ -6,7 +6,7 @@ import android.arch.persistence.room.Room;
 import android.support.annotation.NonNull;
 import android.content.Context;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase{
 
     private static final String DB_NAME = "UserDatabase.db";
@@ -20,7 +20,9 @@ public abstract class AppDatabase extends RoomDatabase{
     }
 
     private static AppDatabase create(final Context context){
-        return Room.databaseBuilder(context,AppDatabase.class,DB_NAME).build();
+        return Room.databaseBuilder(context,AppDatabase.class,DB_NAME)
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     public abstract UserDao userDao();

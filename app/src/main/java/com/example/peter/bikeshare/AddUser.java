@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddUser extends AppCompatActivity {
 
-    static int userCount = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,11 @@ public class AddUser extends AppCompatActivity {
 
 
         new submitToDb().execute(firstName,lastName,middleName,email);
+        editFirst.setText("");
+        editLast.setText("");
+        editMiddle.setText("");
+        editEmail.setText("");
+        Toast.makeText(AddUser.this,"User Added",Toast.LENGTH_LONG).show();
     }
 
     private class submitToDb extends AsyncTask<String,Void,Void> {
@@ -42,8 +47,6 @@ public class AddUser extends AppCompatActivity {
         protected Void doInBackground(String... strings) {
             User newUser = new User();
 
-            newUser.setUser_id(userCount);
-            userCount++;
             newUser.setEmail(strings[3]);
             newUser.setMI(strings[2]);
             newUser.setFirstName(strings[0]);
