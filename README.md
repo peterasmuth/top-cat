@@ -10,8 +10,6 @@ Big Messy To-Do List:
 
 2) Implement SQL database to store all the app data
 
--I've started working with MSSQL, but none of that appears in this repo
-
 -Investigate .NET web service to interface Android and MSSQL
 
 3) In AddBike activity, pull text from the input fields to form a SQL command (or something)
