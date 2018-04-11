@@ -12,7 +12,7 @@ Big Messy To-Do List:
 
 -Investigate .NET web service to interface Android and MSSQL
 
-3) In AddBike activity, pull text from the input fields to form a SQL command (or something)
+
 
 4) Make the UI look less horrible
 

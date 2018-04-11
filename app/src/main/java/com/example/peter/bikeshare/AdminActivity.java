@@ -28,6 +28,11 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToMap(View view) {
+        Intent intent = new Intent(this, MapsTest.class);
+        startActivity(intent);
+    }
+
     public void refresh(View view){
         new findFirst().execute();
     }
