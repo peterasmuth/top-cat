@@ -36,8 +36,8 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapsTest.class);
         startActivity(intent);
     }
-
-    public void refresh(View view){
+    //This portion of the code would pull the first entry of the TABLE users and put the first and last name in a textView
+    /*public void refresh(View view){
         new findFirst().execute();
     }
 
@@ -61,7 +61,7 @@ public class AdminActivity extends AppCompatActivity {
             }
         }
 
-    }
+    }*/
 
     public void clearUsers(View view){
         new clearList().execute();
