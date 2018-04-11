@@ -27,7 +27,13 @@
         <activity
             android:name=".AddBike"
             android:parentActivityName=".AdminActivity" />
-        <activity android:name=".AddUser"></activity>
+        <activity
+            android:name=".AddUser"
+            android:parentActivityName=".AdminActivity" />
+        <activity
+            android:name=".UserList"
+            android:label="@string/title_activity_user_list"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

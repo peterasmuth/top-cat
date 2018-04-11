@@ -7,25 +7,64 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity(tableName = "users")
 public class User {
 
+
     @PrimaryKey
-    public int user_id;
+    private int user_id;
 
     @ColumnInfo(name = "first_name")
-    public String firstName;
+    private String firstName;
 
     @ColumnInfo(name = "last_name")
-    public String lastName;
+    private String lastName;
 
     @ColumnInfo(name = "MI")
-    public String MI;
+    private String MI;
 
     @ColumnInfo(name = "email")
-    public String email;
+    private String email;
 
-    public User (String fn, String ln, String mi, String em){
-        firstName = fn;
-        lastName = ln;
-        MI = mi;
-        email = em;
+    public User (){
+
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setMI(String MI) {
+        this.MI = MI;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getMI() {
+        return MI;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public int getUser_id() {
+        return user_id;
     }
 }
+

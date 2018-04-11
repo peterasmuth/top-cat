@@ -26,8 +26,13 @@ public class AddUser extends AppCompatActivity {
         EditText editEmail = (EditText) findViewById(R.id.email);
         String email = editEmail.getText().toString();
 
-        User newUser = new User(firstName,lastName,middleName,email);
+        User newUser = new User();
 
-        db.insertAll(newUser);
+        newUser.setEmail(email);
+        newUser.setMI(middleName);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+
+        AppDatabase.getInstance(getApplicationContext()).userDao().insertAll(newUser);
     }
 }

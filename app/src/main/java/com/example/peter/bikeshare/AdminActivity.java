@@ -22,4 +22,6 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddUser.class);
         startActivity(intent);
     }
+
+    
 }
