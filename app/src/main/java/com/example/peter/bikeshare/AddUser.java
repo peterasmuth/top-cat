@@ -1,8 +1,11 @@
 package com.example.peter.bikeshare;
 
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class AddUser extends AppCompatActivity {
 
@@ -14,7 +17,7 @@ public class AddUser extends AppCompatActivity {
         setContentView(R.layout.activity_add_user);
     }
 
-    public void submitUser(){
+    public void submitUser(View view){
 
         EditText editFirst = (EditText) findViewById(R.id.firstName);
         String firstName = editFirst.getText().toString();
@@ -28,15 +31,27 @@ public class AddUser extends AppCompatActivity {
         EditText editEmail = (EditText) findViewById(R.id.email);
         String email = editEmail.getText().toString();
 
-        User newUser = new User();
 
-        newUser.setUser_id(userCount);
-        userCount++;
-        newUser.setEmail(email);
-        newUser.setMI(middleName);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
 
-        AppDatabase.getInstance(getApplicationContext()).userDao().insertAll(newUser);
+        new submitToDb().execute(firstName,lastName,middleName,email);
+    }
+
+    private class submitToDb extends AsyncTask<String,Void,Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            User newUser = new User();
+
+            newUser.setUser_id(userCount);
+            userCount++;
+            newUser.setEmail(strings[3]);
+            newUser.setMI(strings[2]);
+            newUser.setFirstName(strings[0]);
+            newUser.setLastName(strings[1]);
+
+            AppDatabase.getInstance(getApplicationContext()).userDao().insertAll(newUser);
+            return null;
+        }
+
     }
 }
