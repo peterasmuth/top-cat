@@ -63,18 +63,7 @@ public class AdminActivity extends AppCompatActivity {
 
     }*/
 
-    public void clearUsers(View view){
-        new clearList().execute();
-    }
 
-    private class clearList extends AsyncTask<Void,Void,Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-
-            AppDatabase.getInstance(getApplicationContext()).userDao().deleteAll();
-            return null;
-        }
-    }
 
 
 }

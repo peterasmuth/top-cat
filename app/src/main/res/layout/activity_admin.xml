@@ -21,34 +21,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToAddBike"
-            android:text="Add a Bike" />
+            android:text="@string/add_bike" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToAddUser"
-            android:text="Add a User" />
+            android:text="@string/add_user"/>
 
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="goToMap"
-            android:text="Map" />
+            android:text="@string/map" />
 
         <Button
             android:id="@+id/button8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Refresh" />
+            android:text="@string/ref" />
 
         <Button
             android:id="@+id/button9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="clearUsers"
-            android:text="Clear User List" />
+            android:text="@string/test" />
 
     </LinearLayout>
 
