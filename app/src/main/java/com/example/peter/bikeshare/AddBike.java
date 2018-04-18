@@ -21,18 +21,18 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
-public class AddBike extends FragmentActivity {
+public class AddBike extends AppCompatActivity {
 
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
+    private int lastBike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bike);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        //addListenerOnButton();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void submitBike(View view){
@@ -55,37 +55,14 @@ public class AddBike extends FragmentActivity {
         String gears = editGears.getText().toString();
 
         new submitToDb().execute(name,lat,lon,style,gears);
+        String toastText = "Bike " + lastBike + " added";
         editName.setText("");
         editlat.setText("");
         editlon.setText("");
         editGears.setText("");
-        Toast.makeText(AddBike.this,"Bike Added",Toast.LENGTH_LONG).show();
+        Toast.makeText(AddBike.this,toastText,Toast.LENGTH_LONG).show();
     }
 
-    /*public void addListenerOnButton() {
-
-        radioGroup = (RadioGroup) findViewById(R.id.radio);
-        btnDisplay = (Button) findViewById(R.id.submit);
-
-        btnDisplay.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                // get selected radio button from radioGroup
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-
-                // find the radiobutton by returned id
-                radioButton = (RadioButton) findViewById(selectedId);
-
-                Toast.makeText(AddBike.this,
-                        radioButton.getText(), Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-
-    }*/
 
     private class submitToDb extends AsyncTask<String,Void,Void> {
 
@@ -100,6 +77,7 @@ public class AddBike extends FragmentActivity {
             newBike.setStyle(strings[4]);
 
             AppDatabase.getInstance(getApplicationContext()).bikeDao().insertAll(newBike);
+            lastBike = AppDatabase.getInstance(getApplicationContext()).bikeDao().count();
             return null;
         }
 

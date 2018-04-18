@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import junit.framework.Test;
+
 public class AdminActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -34,6 +36,11 @@ public class AdminActivity extends AppCompatActivity {
 
     public void goToMap(View view) {
         Intent intent = new Intent(this, MapsTest.class);
+        startActivity(intent);
+    }
+
+    public void goToTest(View view){
+        Intent intent = new Intent(this, TestArea.class);
         startActivity(intent);
     }
     //This portion of the code would pull the first entry of the TABLE users and put the first and last name in a textView
