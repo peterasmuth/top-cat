@@ -15,6 +15,9 @@ public interface BikeDao {
     @Query("SELECT bike_id, lat, lon FROM bikes")
     List<idLocation> getLocations();
 
+    @Query("Select * FROM bikes WHERE bike_id = :id")
+    Bike findByID(int id);
+
     @Query("SELECT COUNT(*) FROM bikes")
     int count();
 

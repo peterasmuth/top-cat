@@ -4,24 +4,31 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import junit.framework.Test;
 
+import java.util.List;
+
 public class AdminActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    String[] entries;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-        //mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        new populateEntries().execute();
     }
 
     public void goToAddBike(View view) {
@@ -43,32 +50,27 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TestArea.class);
         startActivity(intent);
     }
-    //This portion of the code would pull the first entry of the TABLE users and put the first and last name in a textView
-    /*public void refresh(View view){
-        new findFirst().execute();
-    }
 
-    private class findFirst extends AsyncTask<Void,Void,Void>{
+
+    private class populateEntries extends AsyncTask<Void,Void,Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            int userCount = AppDatabase.getInstance(getApplicationContext()).userDao().userCount();
-            TextView sqlTextView = findViewById(R.id.sqlOutput);
+            List<Bike> allBikes = AppDatabase.getInstance(getApplicationContext()).bikeDao().getAll();
+            int count = AppDatabase.getInstance(getApplicationContext()).bikeDao().count();
+            String[] entries = new String[count];
 
-            if(userCount >=1 ) {
-                User firstUser;
-                firstUser = AppDatabase.getInstance(getApplicationContext()).userDao().findFirst();
-                String output = firstUser.getFirstName() + " " + firstUser.getLastName();
-                sqlTextView.setText(output);
-                return null;
-            }else{
-                sqlTextView.setText("No users");
-                return null;
+            for(int i=0;i<count;i++){
+                Bike bikeI = allBikes.get(i);
+                entries[i] = "ID:"+ bikeI.getBike_id() + ":" + bikeI.getName() + " " + bikeI.getStyle() + "" + bikeI.getGears() + "-speed";
             }
+            mAdapter = new MyAdapter(entries);
+            mRecyclerView.setAdapter(mAdapter);
+            return null;
         }
 
-    }*/
+    }
 
 
 
