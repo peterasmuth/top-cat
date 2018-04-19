@@ -4,9 +4,11 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+//Creates a sql table named "bikes"
 @Entity(tableName = "bikes")
 public class Bike {
 
+    //Defines the columns of the table
     @PrimaryKey(autoGenerate = true)
     private int bike_id;
 
@@ -28,7 +30,7 @@ public class Bike {
 
     public Bike(){}
 
-
+    //Getters and setters for each field
     public void setBike_id(int bike_id) {
         this.bike_id = bike_id;
     }

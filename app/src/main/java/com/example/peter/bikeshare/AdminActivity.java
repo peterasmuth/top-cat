@@ -31,6 +31,8 @@ public class AdminActivity extends AppCompatActivity {
         new populateEntries().execute();
     }
 
+    ////////////
+    //These methods are linked to buttons on the UI to navigate to the different sub-activities
     public void goToAddBike(View view) {
         Intent intent = new Intent(this, AddBike.class);
         startActivity(intent);
@@ -51,7 +53,8 @@ public class AdminActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    ////////
+    //Async task to query the bike database and populate an array of Strings from the table
     private class populateEntries extends AsyncTask<Void,Void,Void>{
 
         @Override

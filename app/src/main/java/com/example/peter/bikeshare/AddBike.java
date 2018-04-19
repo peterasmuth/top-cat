@@ -26,7 +26,7 @@ public class AddBike extends AppCompatActivity {
     private RadioGroup radioGroup;
     private RadioButton radioButton;
     private Button btnDisplay;
-    private int lastBike;
+    private Integer lastBike;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,37 +37,39 @@ public class AddBike extends AppCompatActivity {
 
     public void submitBike(View view){
 
+        //Takes input values from textViews and assigns them to Strings
         EditText editName = (EditText) findViewById(R.id.name);
         String name = editName.getText().toString();
-
         EditText editlat = (EditText) findViewById(R.id.lat);
         String lat = editlat.getText().toString();
-
         EditText editlon = (EditText) findViewById(R.id.lon);
         String lon = editlon.getText().toString();
+        EditText editGears = (EditText) findViewById(R.id.gears);
+        String gears = editGears.getText().toString();
 
+        //Determines which radio button is selected and assigns a corresponding String value
         radioGroup = (RadioGroup) findViewById(R.id.radio);
         int selectedId = radioGroup.getCheckedRadioButtonId();
         radioButton = (RadioButton) findViewById(selectedId);
         String style = radioButton.getText().toString();
 
-        EditText editGears = (EditText) findViewById(R.id.gears);
-        String gears = editGears.getText().toString();
 
+        //Takes the new Strings from above and submits them to the database in an async task (below)
         new submitToDb().execute(name,lat,lon,style,gears);
-        String toastText = "Bike " + lastBike + " added";
+
+        //Resets UI text fields
         editName.setText("");
         editlat.setText("");
         editlon.setText("");
         editGears.setText("");
-        Toast.makeText(AddBike.this,toastText,Toast.LENGTH_LONG).show();
+
     }
 
 
-    private class submitToDb extends AsyncTask<String,Void,Void> {
+    private class submitToDb extends AsyncTask<String,Void,Integer> {
 
         @Override
-        protected Void doInBackground(String... strings) {
+        protected Integer doInBackground(String... strings) {
             Bike newBike = new Bike();
 
             newBike.setName(strings[0]);
@@ -78,7 +80,12 @@ public class AddBike extends AppCompatActivity {
 
             AppDatabase.getInstance(getApplicationContext()).bikeDao().insertAll(newBike);
             lastBike = AppDatabase.getInstance(getApplicationContext()).bikeDao().count();
-            return null;
+            return lastBike;
+        }
+
+        protected void onPostExecute(Integer lastBike){
+            String toastText = "Bike " + lastBike + " added";
+            Toast.makeText(AddBike.this,toastText,Toast.LENGTH_LONG).show();
         }
 
     }

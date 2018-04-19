@@ -19,21 +19,21 @@ public class AddUser extends AppCompatActivity {
 
     public void submitUser(View view){
 
+        //Takes input values from textViews and assigns them to Strings
         EditText editFirst = (EditText) findViewById(R.id.firstName);
         String firstName = editFirst.getText().toString();
-
         EditText editLast = (EditText) findViewById(R.id.lastName);
         String lastName = editLast.getText().toString();
-
         EditText editMiddle = (EditText) findViewById(R.id.middle);
         String middleName = editMiddle.getText().toString();
-
         EditText editEmail = (EditText) findViewById(R.id.email);
         String email = editEmail.getText().toString();
 
 
-
+        //Takes the new Strings from above and submits them to the database in an async task (below)
         new submitToDb().execute(firstName,lastName,middleName,email);
+
+        //Resets UI text fields
         editFirst.setText("");
         editLast.setText("");
         editMiddle.setText("");
@@ -41,6 +41,7 @@ public class AddUser extends AppCompatActivity {
         Toast.makeText(AddUser.this,"User Added",Toast.LENGTH_LONG).show();
     }
 
+    //This subclass implements an async task to submit the user to the database in the background
     private class submitToDb extends AsyncTask<String,Void,Void> {
 
         @Override
@@ -55,6 +56,7 @@ public class AddUser extends AppCompatActivity {
             AppDatabase.getInstance(getApplicationContext()).userDao().insertAll(newUser);
             return null;
         }
+
 
     }
 }

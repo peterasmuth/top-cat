@@ -14,6 +14,7 @@ public abstract class AppDatabase extends RoomDatabase{
     private static final String DB_NAME = "UserDatabase.db";
     private static volatile AppDatabase instance;
 
+    //This is the method that is called whenever you want to access the database
     static synchronized AppDatabase getInstance(Context context){
         if (instance == null){
             instance = create(context);

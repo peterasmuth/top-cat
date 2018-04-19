@@ -6,9 +6,11 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
 import java.util.List;
-
+//Interface used to access the "bikes" table.
 @Dao
 public interface BikeDao {
+
+    //Call these methods to perform quereies or insert/delete rows
     @Query("SELECT * FROM bikes")
     List<Bike> getAll();
 
