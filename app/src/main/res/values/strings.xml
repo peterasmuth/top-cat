@@ -16,4 +16,5 @@
     <string name="ref">Refresh</string>
     <string name="test">Test</string>
     <string name="map">Map</string>
+    <string name="add_lock">Add Lock</string>
 </resources>

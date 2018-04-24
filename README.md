@@ -6,6 +6,3 @@ Using Room, I've created a couple tables (entities), one for users, and one for 
 
 Currently, I'm working on improving the UI, and its interaction with the Room database. I'm also looking to implement Google Maps in a meaningful way.
 
-
-
-

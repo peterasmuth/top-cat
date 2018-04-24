@@ -61,7 +61,7 @@ public class AdminActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
 
             List<Bike> allBikes = AppDatabase.getInstance(getApplicationContext()).bikeDao().getAll();
-            int count = AppDatabase.getInstance(getApplicationContext()).bikeDao().count();
+            int count = allBikes.size();
             String[] entries = new String[count];
 
             for(int i=0;i<count;i++){

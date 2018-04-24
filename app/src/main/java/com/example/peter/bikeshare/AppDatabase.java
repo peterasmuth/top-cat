@@ -8,7 +8,7 @@ import android.arch.persistence.room.migration.Migration;
 import android.support.annotation.NonNull;
 import android.content.Context;
 
-@Database(entities = {User.class, Bike.class}, version = 3)
+@Database(entities = {User.class, Bike.class, Lock.class}, version = 4)
 public abstract class AppDatabase extends RoomDatabase{
 
     private static final String DB_NAME = "UserDatabase.db";
@@ -28,8 +28,7 @@ public abstract class AppDatabase extends RoomDatabase{
                 .build();
     }
 
-
-
+    public abstract LockDao lockDao();
     public abstract UserDao userDao();
     public abstract BikeDao bikeDao();
 }
